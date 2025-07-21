@@ -14,7 +14,6 @@ const Booking = ({ setView }) => {
   };
 
   const simulatePayment = () => {
-    // Simulate successful payment
     setPaymentStatus('success');
     const booking = {
       id: Math.random().toString(),
