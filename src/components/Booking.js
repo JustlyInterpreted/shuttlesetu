@@ -15,8 +15,8 @@ const Booking = ({ setView }) => {
 
   const initiatePayment = () => {
     const options = {
-      key: 'rzp_test_1234567890',
-      amount: route.fare * 100,
+      key: 'rzp_test_1234567890', // Replace with your Razorpay test key
+      amount: route.fare * 100, // Amount in paise
       currency: 'INR',
       name: 'ShuttleSetu',
       description: `Booking for ${route.from} to ${route.to}`,
@@ -32,8 +32,14 @@ const Booking = ({ setView }) => {
         db.bookings.push(booking);
         setBookingDetails(booking);
       },
+      theme: {
+        color: '#FF9800', // Match secondary color
+      },
     };
     const rzp = new window.Razorpay(options);
+    rzp.on('payment.failed', (response) => {
+      alert(`Payment failed: ${response.error.description}`);
+    });
     rzp.open();
   };
 
