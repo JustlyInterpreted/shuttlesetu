@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap');
+}
+
+.font-noto-hindi {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
