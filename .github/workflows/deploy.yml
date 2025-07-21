@@ -21,13 +21,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build
         run: npm run build
+        env:
+          CI: false
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
