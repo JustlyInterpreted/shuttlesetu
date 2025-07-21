@@ -33,6 +33,9 @@ jobs:
         env:
           CI: false
 
+      - name: List Build Files
+        run: ls -la ./build
+
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
