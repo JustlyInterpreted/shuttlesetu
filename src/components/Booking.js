@@ -13,34 +13,18 @@ const Booking = ({ setView }) => {
     setRoute(selectedRoute);
   };
 
-  const initiatePayment = () => {
-    const options = {
-      key: 'rzp_test_1234567890', // Replace with your Razorpay test key
-      amount: route.fare * 100, // Amount in paise
-      currency: 'INR',
-      name: 'ShuttleSetu',
-      description: `Booking for ${route.from} to ${route.to}`,
-      handler: (response) => {
-        setPaymentStatus('success');
-        const booking = {
-          id: Math.random().toString(),
-          routeId: route.id,
-          userId: 'user1',
-          seat: Math.floor(Math.random() * route.seats) + 1,
-          status: 'confirmed',
-        };
-        db.bookings.push(booking);
-        setBookingDetails(booking);
-      },
-      theme: {
-        color: '#FF9800', // Match secondary color
-      },
+  const simulatePayment = () => {
+    // Simulate successful payment
+    setPaymentStatus('success');
+    const booking = {
+      id: Math.random().toString(),
+      routeId: route.id,
+      userId: 'user1',
+      seat: Math.floor(Math.random() * route.seats) + 1,
+      status: 'confirmed',
     };
-    const rzp = new window.Razorpay(options);
-    rzp.on('payment.failed', (response) => {
-      alert(`Payment failed: ${response.error.description}`);
-    });
-    rzp.open();
+    db.bookings.push(booking);
+    setBookingDetails(booking);
   };
 
   const smsBooking = () => {
@@ -104,12 +88,12 @@ const Booking = ({ setView }) => {
       </div>
       {route && (
         <div className="mt-4">
-          <h3 className="text-xl font-bold">Payment</h3>
+          <h3 className="text-xl font-bold">Payment (Demo)</h3>
           <button
             className="bg-secondary text-white px-4 py-2 rounded"
-            onClick={initiatePayment}
+            onClick={simulatePayment}
           >
-            {translations[language].payNow}
+            {translations[language].payNow} (Demo)
           </button>
         </div>
       )}
