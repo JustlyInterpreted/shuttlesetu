@@ -1,29 +1,36 @@
 import { useContext } from 'react';
-import { LanguageContext } from './LanguageContext';
+     import { Link } from 'react-router-dom';
+     import { LanguageContext } from './LanguageContext';
+     import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+     import { faBus } from '@fortawesome/free-solid-svg-icons';
 
-const Header = ({ logout }) => {
-  const { language, setLanguage, translations } = useContext(LanguageContext);
-  return (
-    <header className="bg-primary text-white p-4 flex justify-between items-center">
-      <div className="flex items-center space-x-2">
-        <img src="https://via.placeholder.com/40" alt="ShuttleSetu Logo" className="h-10" />
-        <h1 className="text-xl font-bold">{translations[language].welcome}</h1>
-      </div>
-      <div className="flex space-x-4">
-        <select
-          className="bg-secondary text-white p-2 rounded"
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-        >
-          <option value="en">English</option>
-          <option value="hi">हिन्दी</option>
-        </select>
-        <button className="bg-secondary px-4 py-2 rounded" onClick={logout}>
-          Logout
-        </button>
-      </div>
-    </header>
-  );
-};
+     const Header = () => {
+       const { language, setLanguage } = useContext(LanguageContext);
 
-export default Header;
+       return (
+         <header className="bg-primary text-white p-4 flex justify-between items-center">
+           <div className="flex items-center">
+             <FontAwesomeIcon icon={faBus} className="text-2xl mr-2" />
+             <Link to="/" className="text-2xl font-bold font-noto-hindi">ShuttleSetu</Link>
+           </div>
+           <nav>
+             <Link to="/" className="mx-2">Home</Link>
+             <Link to="/booking" className="mx-2">Book</Link>
+             <Link to="/passenger" className="mx-2">Passenger</Link>
+             <Link to="/driver" className="mx-2">Driver</Link>
+             <Link to="/admin" className="mx-2">Admin</Link>
+             <Link to="/sms" className="mx-2">SMS</Link>
+             <select
+               value={language}
+               onChange={e => setLanguage(e.target.value)}
+               className="ml-4 p-1 bg-white text-primary rounded"
+             >
+               <option value="en">English</option>
+               <option value="hi">हिन्दी</option>
+             </select>
+           </nav>
+         </header>
+       );
+     };
+
+     export default Header;
