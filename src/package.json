@@ -2,7 +2,7 @@
   "name": "shuttlesetu",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://your-username.github.io/shuttlesetu",
+  "homepage": "https://justlyinterpreted.github.io/shuttlesetu",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
